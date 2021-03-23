@@ -1,15 +1,15 @@
-const fire0 = new Image();
-fire0.src = "img/sword0.png";
+const fire = new Image();
+fire.src = "img/chest.png";
 
 class Reward {
     constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.width = 30;
-        this.height = 40;
+        this.width = 50;
+        this.height = 50;
     }
     draw(){
-        drawSprite(fire0,0,0,114,335,this.x,this.y,this.width,this.height);
+        drawSprite(fire,118,118,118,118,this.x,this.y,this.width,this.height);
     }
 }
 

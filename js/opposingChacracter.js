@@ -2,7 +2,7 @@
 const imagesPlayer = new Image();
 imagesPlayer.src = 'img/death.png';
 const characterActions = ['up', 'right', 'left', 'down'];
-const numberOfCharacters = 1;
+const numberOfCharacters = 3;
 const characters = [];
 
 class Character {
