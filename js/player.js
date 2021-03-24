@@ -10,9 +10,12 @@ class Player {
         this.speed = speed;
         this.moving = moving;
     }
+    draw(){
+        drawSprite(playerImg, player.width * player.frameX, player.height * player.frameY, player.width, player.height, player.x, player.y, player.width, player.height);
+    }
 }
 
-let player = new Player(200, 200, 32, 48, 0, 0, 1,false);
+let player = new Player(200, 200, 32, 48, 0, 0, 2,false);
 
 //player image
 const playerImg = new Image();

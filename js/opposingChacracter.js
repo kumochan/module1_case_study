@@ -2,7 +2,6 @@
 const imagesPlayer = new Image();
 imagesPlayer.src = 'img/death.png';
 const characterActions = ['up', 'right', 'left', 'down'];
-const numberOfCharacters = 3;
 const characters = [];
 
 class Character {
@@ -60,6 +59,7 @@ class Character {
         }
     }
 }
-for (let i = 0; i < numberOfCharacters; i++){
-    characters.push(new Character());
+
+for (let i = 0; i < 100; i++) {
+    characters.push(new Character())
 }

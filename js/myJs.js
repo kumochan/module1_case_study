@@ -9,6 +9,7 @@ const canvas = document.getElementById("myCanvas");
 const ctx =canvas.getContext('2d');
 canvas.width = 800;
 canvas.height = 500;
+var limitLength;
 
 //background image
 const background = new Image();
@@ -35,8 +36,8 @@ function checkLose(player, character){
     )
     {
         pause = true;
-        document.querySelector('#end').style.display = 'block';
-        document.querySelector('#result').innerHTML = `Your score is ${count}`;
+        document.querySelector('#end').style.display = 'flex';
+        document.querySelector('#result').innerHTML = `GAME OVER<br>Your score is ${count}`;
         document.getElementById('saveScore').addEventListener('click', function (){
             let name = document.getElementById('name').value;
             scoreArray.push([name,count]);
@@ -44,6 +45,25 @@ function checkLose(player, character){
             localStorage.setItem("scoreArray", JSON.stringify(scoreArray));
         });
     }
+}
+
+function limitPlayer(count){
+    switch (count){
+        case 1: limitLength = 1;
+            break;
+        case 10: limitLength = 3;
+            break;
+        case 20: limitLength = 5;
+            break;
+        case 30: limitLength = 8;
+            break;
+    }
+}
+
+function drawScore(count){
+    ctx.font = "30px Arial";
+    ctx.fillStyle = 'rgba(255,255,255,0.8)';
+    ctx.fillText('Score: ' + count, 10, 50);
 }
 
 let scoreArray;
@@ -59,27 +79,22 @@ function animate(){
     if(!pause) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-        drawSprite(playerImg, player.width * player.frameX, player.height * player.frameY, player.width, player.height, player.x, player.y, player.width, player.height);
+        player.draw();
         movePlayer();
         handlePlayerMove(player);
-        for (let i = 0; i < characters.length; i++) {
+        limitPlayer(count);
+        for (let i = 0; i < limitLength; i++) {
             characters[i].draw();
             characters[i].update();
             checkLose(player, characters[i]);
         }
         reward.draw();
         earnReward(player, reward);
-
-        ctx.font = "30px Arial";
-        ctx.fillStyle = 'rgba(255,255,255,0.8)';
-        ctx.fillText('Score: ' + count, 10, 50);
+        drawScore(count);
     }
         requestAnimationFrame(animate);
 }
 
 animate();
-
-
-
 
 

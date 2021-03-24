@@ -9,14 +9,22 @@ class Reward {
         this.height = 50;
     }
     draw(){
-        drawSprite(fire,118,118,118,118,this.x,this.y,this.width,this.height);
+        if(count<10) {
+            drawSprite(fire, 0, 0, 118, 118, this.x, this.y, this.width, this.height);
+        } else if(count >= 10 && count <20) {
+            drawSprite(fire, 118, 0, 118, 118, this.x, this.y, this.width, this.height);
+        } else if(count >= 20 && count <30) {
+            drawSprite(fire, 0, 118, 118, 118, this.x, this.y, this.width, this.height);
+        } else if(count > 30) {
+            drawSprite(fire, 118, 118, 118, 118, this.x, this.y, this.width, this.height);
+        }
     }
 }
 
 const reward = new Reward();
 
 //Score
-let count = 0;
+var count = 0;
 
 function earnReward(player, reward){
     let x1 = player.x;
@@ -32,7 +40,7 @@ function earnReward(player, reward){
     )
     {
         count ++;
-        reward.x = Math.random() * canvas.width - 50;
-        reward.y = Math.random() * canvas.height - 50;
+        reward.x = Math.random() * (canvas.width - 100);
+        reward.y = Math.random() * (canvas.height - 100);
     }
 }
